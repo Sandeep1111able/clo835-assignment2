@@ -55,7 +55,7 @@ resource "aws_instance" "k8s_ec2" {
   user_data = <<-EOF
               #!/bin/bash
               sudo yum update -y
-              sudo yum install -y docker curl
+              sudo yum install docker -y
               sudo systemctl start docker
               sudo systemctl enable docker
               sudo usermod -aG docker ec2-user
