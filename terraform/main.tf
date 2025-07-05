@@ -54,11 +54,11 @@ resource "aws_instance" "k8s_ec2" {
 
   user_data = <<-EOF
               #!/bin/bash
-              yum update -y
-              yum install -y docker curl
-              systemctl start docker
-              systemctl enable docker
-              usermod -aG docker ec2-user
+              sudo yum update -y
+              sudo yum install -y docker curl
+              sudo systemctl start docker
+              sudo systemctl enable docker
+              sudo usermod -aG docker ec2-user
 
               curl -o kubectl https://s3.us-west-2.amazonaws.com/amazon-eks/1.24.7/2022-10-31/bin/linux/amd64/kubectl
               chmod +x kubectl
