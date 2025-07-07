@@ -52,6 +52,12 @@ resource "aws_instance" "k8s_ec2" {
   vpc_security_group_ids = [aws_security_group.k8s_sg.id]
   key_name               = var.key_name
 
+  root_block_device {
+    volume_size = 30            
+    volume_type = "gp2"         
+    delete_on_termination = true
+  }
+
   user_data = <<-EOF
               #!/bin/bash
               sudo yum update -y
@@ -75,6 +81,7 @@ resource "aws_instance" "k8s_ec2" {
     Name = "CLO835-K8s-Assignment2"
   }
 }
+
 
 resource "aws_ecr_repository" "webapp" {
   name = "webapp"
